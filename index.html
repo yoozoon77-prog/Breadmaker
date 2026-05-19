@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마들렌 마스터 - 베이킹 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+    <header id="ui-header">
+        <div class="step-info">단계: <span id="current-step">1. 재료 쏟기</span></div>
+        <div class="score-info">맛 평가: ★☆☆</div>
+    </header>
+
+    <main id="game-area">
+        <div id="mixing-bowl-zone" class="drop-zone">
+            <div class="placeholder-bowl">여기에 재료를 드래그하세요!</div>
+            <div id="ingredients-in-bowl"></div> </div>
+        <div id="recipe-hint">레시피: 밀가루 -> 설탕 -> 달걀 -> 레몬 -> 버터</div>
+    </main>
+
+    <footer id="ingredients-shelf">
+        <div class="ingredient" draggable="true" id="flour" data-ingredient="밀가루">밀가루</div>
+        <div class="ingredient" draggable="true" id="sugar" data-ingredient="설탕">설탕</div>
+        <div class="ingredient" draggable="true" id="eggs" data-ingredient="달걀">달걀</div>
+        <div class="ingredient" draggable="true" id="lemon" data-ingredient="레몬">레몬</div>
+        <div class="ingredient" draggable="true" id="butter" data-ingredient="버터">버터</div>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
