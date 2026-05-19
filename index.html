@@ -3,31 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마들렌 마스터 - 베이킹 게임</title>
+    <title>🍰 마들렌 마스터 - 베이킹 게임</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="game-container">
+
+    <!-- 배경 장식 -->
+    <div class="bg-deco">
+        <div class="star s1">✦</div>
+        <div class="star s2">✦</div>
+        <div class="star s3">✦</div>
+        <div class="star s4">★</div>
+        <div class="star s5">✦</div>
+        <div class="cloud c1">☁</div>
+        <div class="cloud c2">☁</div>
+    </div>
+
+    <!-- 헤더 -->
     <header id="ui-header">
-        <div class="step-info">단계: <span id="current-step">1. 재료 쏟기</span></div>
-        <div class="score-info">맛 평가: ★☆☆</div>
+        <div class="header-left">
+            <div class="game-title">🍰 마들렌 마스터</div>
+        </div>
+        <div class="header-center">
+            <div class="step-badge">
+                <span class="step-label">STEP</span>
+                <span class="step-num">1</span>
+            </div>
+            <div class="step-name" id="current-step">재료 넣기</div>
+        </div>
+        <div class="header-right">
+            <div class="stars-display">
+                <span class="star-icon active">★</span>
+                <span class="star-icon">★</span>
+                <span class="star-icon">★</span>
+            </div>
+            <div class="score-label">맛 평가</div>
+        </div>
     </header>
 
+    <!-- 메인 게임 영역 -->
     <main id="game-area">
-        <div id="mixing-bowl-zone" class="drop-zone">
-            <div class="placeholder-bowl">여기에 재료를 드래그하세요!</div>
-            <div id="ingredients-in-bowl"></div> </div>
-        <div id="recipe-hint">레시피: 밀가루 -> 설탕 -> 달걀 -> 레몬 -> 버터</div>
+
+        <!-- 레시피 힌트 패널 -->
+        <div id="recipe-panel">
+            <div class="recipe-title">📜 레시피 순서</div>
+            <div class="recipe-steps" id="recipe-steps-display">
+                <div class="recipe-step" data-step="0">
+                    <span class="step-icon">🌾</span>
+                    <span class="step-text">밀가루</span>
+                    <span class="step-check" id="check-0">○</span>
+                </div>
+                <div class="recipe-arrow">▼</div>
+                <div class="recipe-step" data-step="1">
+                    <span class="step-icon">🍬</span>
+                    <span class="step-text">설탕</span>
+                    <span class="step-check" id="check-1">○</span>
+                </div>
+                <div class="recipe-arrow">▼</div>
+                <div class="recipe-step" data-step="2">
+                    <span class="step-icon">🥚</span>
+                    <span class="step-text">달걀</span>
+                    <span class="step-check" id="check-2">○</span>
+                </div>
+                <div class="recipe-arrow">▼</div>
+                <div class="recipe-step" data-step="3">
+                    <span class="step-icon">🍋</span>
+                    <span class="step-text">레몬</span>
+                    <span class="step-check" id="check-3">○</span>
+                </div>
+                <div class="recipe-arrow">▼</div>
+                <div class="recipe-step" data-step="4">
+                    <span class="step-icon">🧈</span>
+                    <span class="step-text">버터</span>
+                    <span class="step-check" id="check-4">○</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 믹싱볼 존 -->
+        <div id="bowl-area">
+            <div class="bowl-label">🥣 믹싱 볼</div>
+            <div id="mixing-bowl-zone" class="drop-zone">
+                <div class="bowl-inner">
+                    <div id="ingredients-in-bowl"></div>
+                    <div class="bowl-hint" id="bowl-hint">재료를 드래그해서<br>여기에 넣어주세요!</div>
+                </div>
+                <div class="bowl-bottom"></div>
+            </div>
+            <div id="next-ingredient-hint">
+                다음에 넣을 재료: <span id="next-ing-name">밀가루</span>
+            </div>
+        </div>
+
+        <!-- 성공 오버레이 -->
+        <div id="success-overlay" class="hidden">
+            <div class="success-box">
+                <div class="success-emoji">🎉</div>
+                <div class="success-title">완벽해요!</div>
+                <div class="success-msg">재료를 모두 넣었어요!<br>이제 섞어볼까요?</div>
+                <button id="next-step-btn">다음 단계로! →</button>
+            </div>
+        </div>
+
     </main>
 
+    <!-- 재료 진열대 -->
     <footer id="ingredients-shelf">
-        <div class="ingredient" draggable="true" id="flour" data-ingredient="밀가루">밀가루</div>
-        <div class="ingredient" draggable="true" id="sugar" data-ingredient="설탕">설탕</div>
-        <div class="ingredient" draggable="true" id="eggs" data-ingredient="달걀">달걀</div>
-        <div class="ingredient" draggable="true" id="lemon" data-ingredient="레몬">레몬</div>
-        <div class="ingredient" draggable="true" id="butter" data-ingredient="버터">버터</div>
+        <div class="shelf-label">🧺 재료 창고</div>
+        <div class="shelf-items">
+            <div class="ingredient" draggable="true" id="flour" data-ingredient="밀가루">
+                <div class="item-pixel">
+                    <div class="pixel-art flour-pixel"></div>
+                </div>
+                <div class="item-emoji">🌾</div>
+                <div class="item-name">밀가루</div>
+                <div class="item-rarity common">COMMON</div>
+            </div>
+            <div class="ingredient" draggable="true" id="sugar" data-ingredient="설탕">
+                <div class="item-pixel">
+                    <div class="pixel-art sugar-pixel"></div>
+                </div>
+                <div class="item-emoji">🍬</div>
+                <div class="item-name">설탕</div>
+                <div class="item-rarity common">COMMON</div>
+            </div>
+            <div class="ingredient" draggable="true" id="eggs" data-ingredient="달걀">
+                <div class="item-pixel">
+                    <div class="pixel-art egg-pixel"></div>
+                </div>
+                <div class="item-emoji">🥚</div>
+                <div class="item-name">달걀</div>
+                <div class="item-rarity uncommon">UNCOMMON</div>
+            </div>
+            <div class="ingredient" draggable="true" id="lemon" data-ingredient="레몬">
+                <div class="item-pixel">
+                    <div class="pixel-art lemon-pixel"></div>
+                </div>
+                <div class="item-emoji">🍋</div>
+                <div class="item-name">레몬</div>
+                <div class="item-rarity rare">RARE</div>
+            </div>
+            <div class="ingredient" draggable="true" id="butter" data-ingredient="버터">
+                <div class="item-pixel">
+                    <div class="pixel-art butter-pixel"></div>
+                </div>
+                <div class="item-emoji">🧈</div>
+                <div class="item-name">버터</div>
+                <div class="item-rarity uncommon">UNCOMMON</div>
+            </div>
+        </div>
     </footer>
+</div>
+
+<!-- 오류 토스트 -->
+<div id="error-toast" class="toast hidden">
+    <span id="error-msg">❌ 순서가 틀렸어요!</span>
 </div>
 
 <script src="script.js"></script>
